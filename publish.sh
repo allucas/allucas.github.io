@@ -14,7 +14,7 @@ for f in "${arr[@]}"; do
    filename="${filename%.*}"
 
    # Convert the Notebook to HTML
-   jupyter-nbconvert --to html Notebooks/"$filename".ipynb
+   jupyter-nbconvert --to html Notebooks/"$filename".ipynb --no-input
    # Move to the Html directory
    mv Notebooks/"$filename".html  Html/"$filename".html
 
