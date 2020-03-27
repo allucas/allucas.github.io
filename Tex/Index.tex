@@ -370,95 +370,6 @@
     
 
     
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{3}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
-
-\PY{k+kn}{import} \PY{n+nn}{tabula}
-
-\PY{k+kn}{import} \PY{n+nn}{requests}
-
-\PY{k+kn}{from} \PY{n+nn}{ggplot} \PY{k+kn}{import} \PY{o}{*}
-
-\PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
-
-\PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
-
-\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
-
-\PY{c+c1}{\PYZsh{}url = \PYZsq{}https://milkeninstitute.org/sites/default/files/2020\PYZhy{}03/Covid19\PYZhy{}Tracker\PYZhy{}3\PYZhy{}36\PYZhy{}20\PYZhy{}FINAL.pdf\PYZsq{}}
-
-\PY{n}{url} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://www.who.int/blueprint/priority\PYZhy{}diseases/key\PYZhy{}action/novel\PYZhy{}coronavirus\PYZhy{}landscape\PYZhy{}ncov.pdf?ua=1}\PY{l+s+s1}{\PYZsq{}}
-
-\PY{n}{myfile} \PY{o}{=} \PY{n}{requests}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{n}{url}\PY{p}{)}
-\PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{COVID19\PYZhy{}data.pdf}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{wb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n}{myfile}\PY{o}{.}\PY{n}{content}\PY{p}{)}
-
-\PY{c+c1}{\PYZsh{}declare the path of your file}
-\PY{n}{file\PYZus{}path} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{COVID19\PYZhy{}data.pdf}\PY{l+s+s2}{\PYZdq{}}
-\PY{c+c1}{\PYZsh{}Convert your file}
-\PY{n}{df} \PY{o}{=} \PY{n}{tabula}\PY{o}{.}\PY{n}{read\PYZus{}pdf}\PY{p}{(}\PY{n}{file\PYZus{}path}\PY{p}{,} \PY{n}{pages}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{all}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{lattice}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{multiple\PYZus{}tables}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
-\PY{c+c1}{\PYZsh{}df = df[10]}
-\PY{c+c1}{\PYZsh{}df = df.drop(index=0)}
-\PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
-\PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{thresh}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
-\PY{c+c1}{\PYZsh{}\PYZpc{}\PYZpc{} Clean the data}
-
-
-\PY{n}{df}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{platform}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{type\PYZus{}product}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{developer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{covid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{stage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
-              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{other}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-
-\PY{n}{a} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{platform}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}
-\PY{n}{aa} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{stage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}
-\PY{n}{b} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-
-\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{)}\PY{p}{:}
-    \PY{c+c1}{\PYZsh{}aa[i] = aa[i].replace(\PYZsq{}\PYZbs{}r\PYZsq{},\PYZsq{} \PYZsq{})}
-    \PY{n}{b}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{a}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
-    \PY{k}{if} \PY{n}{b}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Platform}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
-        \PY{n}{b}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{nan}
-
-\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{platform}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{b}
-
-\PY{c+c1}{\PYZsh{} Evaluate the different trial types}
-\PY{n}{stages} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pre\PYZhy{}Clinical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Phase 1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Phase 2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Phase 3}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-
-\PY{n}{c} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{stage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}
-\PY{n}{stage\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-
-\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{c}\PY{p}{)}\PY{p}{)}\PY{p}{:}
-    \PY{n}{stage} \PY{o}{=} \PY{n}{c}\PY{p}{[}\PY{n}{i}\PY{p}{]}
-    \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{stages}\PY{p}{)}\PY{p}{)}\PY{p}{:}
-        \PY{k}{if} \PY{n}{stages}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o+ow}{in} \PY{n}{stage}\PY{p}{:}
-            \PY{n}{stage\PYZus{}list}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{stages}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}
-    \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{stage\PYZus{}list}\PY{p}{)}\PY{o}{\PYZlt{}}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{:}
-            \PY{n}{stage\PYZus{}list}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{nan}\PY{p}{)}
-    
-
-\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{stage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{stage\PYZus{}list}
-
-
-\PY{c+c1}{\PYZsh{}\PYZpc{}\PYZpc{} Plot}
-
-\PY{n}{chart} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{catplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{platform}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{kind}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{count}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{palette}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ch:.25}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{df}\PY{p}{)}\PY{p}{;}
-
-\PY{n}{chart}\PY{o}{.}\PY{n}{set\PYZus{}xticklabels}\PY{p}{(}\PY{n}{rotation}\PY{o}{=}\PY{l+m+mi}{75}\PY{p}{)}
-
-
-\PY{n}{chart2} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{catplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{stage}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{kind}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{count}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{palette}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ch:.25}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{df}\PY{p}{)}\PY{p}{;}
-
-\PY{n}{chart2}\PY{o}{.}\PY{n}{set\PYZus{}xticklabels}\PY{p}{(}\PY{n}{rotation}\PY{o}{=}\PY{l+m+mi}{75}\PY{p}{)}
-
-\PY{c+c1}{\PYZsh{}\PYZpc{}\PYZpc{}}
-\PY{c+c1}{\PYZsh{}plt.figure()}
-\PY{c+c1}{\PYZsh{}plat\PYZus{}count = df[\PYZsq{}platform\PYZsq{}].value\PYZus{}counts()}
-\PY{c+c1}{\PYZsh{}chart3 = sns.barplot(plat\PYZus{}count.index, plat\PYZus{}count.values, alpha=0.8,palette=\PYZdq{}ch:.25\PYZdq{})}
-\PY{c+c1}{\PYZsh{}plt.setp(chart3.get\PYZus{}xticklabels(), rotation=90)}
-\PY{c+c1}{\PYZsh{}plt.xlabel(\PYZsq{}Vaccine Platform\PYZsq{})}
-\PY{c+c1}{\PYZsh{}plt.ylabel(\PYZsq{}Count\PYZsq{})}
-\end{Verbatim}
-\end{tcolorbox}
-
     \begin{Verbatim}[commandchars=\\\{\}]
 Got stderr: Mar 27, 2020 11:20:35 AM
 org.apache.pdfbox.pdmodel.font.PDCIDFontType2 <init>
@@ -471,7 +382,6 @@ PDFBox and will be ignored
     \end{Verbatim}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 <seaborn.axisgrid.FacetGrid at 0x1a1f3c8f90>
 \end{Verbatim}
@@ -487,13 +397,6 @@ PDFBox and will be ignored
     \end{center}
     { \hspace*{\fill} \\}
     
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{ }{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-
-\end{Verbatim}
-\end{tcolorbox}
-
 
     % Add a bibliography block to the postdoc
     

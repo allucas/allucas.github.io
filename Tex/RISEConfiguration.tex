@@ -370,56 +370,7 @@
     
 
     
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{26}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{from} \PY{n+nn}{traitlets}\PY{n+nn}{.}\PY{n+nn}{config}\PY{n+nn}{.}\PY{n+nn}{manager} \PY{k+kn}{import} \PY{n}{BaseJSONConfigManager}
-\PY{n}{path} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{/home/crackauc/.jupyter/nbconfig}\PY{l+s+s2}{\PYZdq{}}
-\PY{n}{cm} \PY{o}{=} \PY{n}{BaseJSONConfigManager}\PY{p}{(}\PY{n}{config\PYZus{}dir}\PY{o}{=}\PY{n}{path}\PY{p}{)}
-\PY{n}{cm}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{livereveal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{\PYZob{}}
-              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{theme}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sky}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
-              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{transition}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fade}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
-              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{start\PYZus{}slideshow\PYZus{}at}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{selected}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
-                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{width}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{l+m+mi}{1600}\PY{p}{,}
-                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{height}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{900}\PY{p}{,}
-                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scroll}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{k+kc}{True}\PY{p}{,}
-                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{slideNumber}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{k+kc}{False}\PY{p}{,}
-\PY{p}{\PYZcb{}}\PY{p}{)}
-
-\PY{c+c1}{\PYZsh{}}
-\PY{c+c1}{\PYZsh{}from notebook.services.config import ConfigManager}
-\PY{c+c1}{\PYZsh{}cm = ConfigManager()}
-\PY{c+c1}{\PYZsh{}cm.update(\PYZsq{}livereveal\PYZsq{}, \PYZob{}}
-\PY{c+c1}{\PYZsh{}        \PYZsq{}width\PYZsq{}: 1600,}
-\PY{c+c1}{\PYZsh{}        \PYZsq{}height\PYZsq{}: 800,}
-\PY{c+c1}{\PYZsh{}        \PYZsq{}scroll\PYZsq{}: True,}
-\PY{c+c1}{\PYZsh{}\PYZcb{})}
-
-
-
-
-\PY{c+c1}{\PYZsh{}}
-\PY{c+c1}{\PYZsh{}from notebook.services.config import ConfigManager}
-\PY{c+c1}{\PYZsh{}cm = ConfigManager()}
-\PY{c+c1}{\PYZsh{}cm.update(\PYZsq{}livereveal\PYZsq{}, \PYZob{}}
-\PY{c+c1}{\PYZsh{}        \PYZsq{}width\PYZsq{}: 1600,}
-\PY{c+c1}{\PYZsh{}        \PYZsq{}height\PYZsq{}: 800,}
-\PY{c+c1}{\PYZsh{}        \PYZsq{}scroll\PYZsq{}: True,}
-\PY{c+c1}{\PYZsh{}\PYZcb{})}
-
-\PY{c+c1}{\PYZsh{}}
-\PY{c+c1}{\PYZsh{}from notebook.services.config import ConfigManager}
-\PY{c+c1}{\PYZsh{}cm = ConfigManager()}
-\PY{c+c1}{\PYZsh{}cm.update(\PYZsq{}livereveal\PYZsq{}, \PYZob{}}
-\PY{c+c1}{\PYZsh{}        \PYZsq{}width\PYZsq{}: 1600,}
-\PY{c+c1}{\PYZsh{}        \PYZsq{}height\PYZsq{}: 800,}
-\PY{c+c1}{\PYZsh{}        \PYZsq{}scroll\PYZsq{}: True,}
-\PY{c+c1}{\PYZsh{}\PYZcb{})}
-\end{Verbatim}
-\end{tcolorbox}
-
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{26}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \{u'height': 900,
  u'scroll': True,

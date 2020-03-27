@@ -63,28 +63,11 @@ The badges on a Github repository show you the current state of the repo. From l
 
 Julia's package manager functions are mirror the Git functions. Julia's package system is similar to R/Python in that a large number of packages are freely available. You search for them in places like [Julia's Package Genie](http://genieframework.com/packages), or from the [Julia Package Listing](http://pkg.julialang.org/). Let's take a look at the [Plots.jl package by Tom Breloff](https://github.com/tbreloff/Plots.jl). To add a package, use `Pkg.add`
 
-
-```julia
-Pkg.update() # You may need to update your local packages first
-Pkg.add("Plots")
-```
-
 This will install the package to your local system. However, this will only work for registered packages. To add a non-registered package, go to the Github repository to find the clone URL and use `Pkg.clone`. For example, to install the `ParameterizedFunctions` package, we can use:
-
-
-```julia
-Pkg.clone("https://github.com/JuliaDiffEq/ParameterizedFunctions.jl")
-```
 
 ### Importing a Package
 
 To use a package, you have to import the package. The `import` statement will import the package without exporting the functions to the namespace. (Note that the first time a package is run, it will precompile a lot of the functionality.) For example:
-
-
-```julia
-import Plots
-Plots.plot(rand(4,4))
-```
 
 
 
@@ -96,12 +79,6 @@ Plots.plot(rand(4,4))
 ### Exporting Functionality
 
 To instead export the functions (of the developers choosing) to the namespace, we can use the `using` statement. Since Plots.jl exports the `plot` command, we can then use it without reference to the package that it came from:
-
-
-```julia
-using Plots
-plot(rand(4,4))
-```
 
 
 
@@ -116,16 +93,6 @@ What really makes this possible in Julia but not something like Python is that n
 
 Since Julia is currently under lots of development, you may wish to checkout newer versions. By default, `Pkg.add` is the "latest release", meaning the latest tagged version. However, the main version shown in the Github repository is usually the "master" branch. It's good development practice that the latest release is kept "stable", while the "master" branch is kept "working", and development takes place in another branch (many times labelled "dev"). You can choose which branch your local repository takes from. For example, to checkout the master branch, we can use: 
 
-
-```julia
-Pkg.checkout("Plots")
-```
-
 This will usually gives us pretty up to date features (if you are using a "unreleased version of Julia" like building from the source of the Julia nightly, you may need to checkout master in order to get some packages working). However, to go to a specific branch we can give the branch as another argument:
-
-
-```julia
-Pkg.checkout("Plots","dev")
-```
 
 This is not advised if you don't know what you're doing (i.e. talk to the developer or read the pull requests (PR)), but this is common if you talk to a developer and they say "yes, I already implemented that. Checkout the dev branch and use `plot(...)`).
