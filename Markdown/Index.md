@@ -1,11 +1,15 @@
     <IPython.core.display.Javascript object>
 
 
-# COVID-19 Vaccine Platforms in Development
+# COVID-19 Vaccine Development Tracker
 
-    Got stderr: Mar 27, 2020 3:28:52 PM org.apache.pdfbox.pdmodel.font.PDCIDFontType2 <init>
+Welcome to **covid-vaccine-tracker.com**. This website presents a summary of the data published by the WHO regarding the develipment of COVID-19 vaccines (https://www.who.int/blueprint/priority-diseases/key-action/novel-coronavirus-landscape-ncov.pdf?ua=1). No modifications have been made to the data, and it has been done as an attempt to make this information more easily accessible to the public. The website is updated on a daily basis.
+
+### COVID-19 Vaccine Platforms in Development
+
+    Got stderr: Mar 27, 2020 3:40:28 PM org.apache.pdfbox.pdmodel.font.PDCIDFontType2 <init>
     INFO: OpenType Layout tables used in font BCDGEE+Calibri-Light are not implemented in PDFBox and will be ignored
-    Mar 27, 2020 3:28:53 PM org.apache.pdfbox.pdmodel.font.PDCIDFontType2 <init>
+    Mar 27, 2020 3:40:29 PM org.apache.pdfbox.pdmodel.font.PDCIDFontType2 <init>
     INFO: OpenType Layout tables used in font BCDIEE+Calibri are not implemented in PDFBox and will be ignored
     
 
@@ -15,7 +19,7 @@
 
 
 
-![png](Index_files/Index_4_1.png)
+![png](Index_files/Index_5_1.png)
 
 
 <pre>
@@ -29,15 +33,15 @@
 
 
 
-# Clincal Trial Phase
+### Clincal Trial Phase
 
 
-![png](Index_files/Index_6_0.png)
+![png](Index_files/Index_7_0.png)
 
 
 # Data
 
-The data for this website is taken directly from the WHO (https://www.who.int/blueprint/priority-diseases/key-action/novel-coronavirus-landscape-ncov.pdf?ua=1)
+I have filtered the WHO data and made it more accessible. If you would like a spreadsheet version of this data, please email me at: *covid.vaccine.tracker@gmail.com*
 
 
 
