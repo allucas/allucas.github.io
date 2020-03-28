@@ -13084,10 +13084,10 @@ div#notebook {
 
 
 
-<div id="c6172a83-43f2-4b2f-98ec-ae3ab6c310ae"></div>
+<div id="b9ecea50-1626-421c-932e-20de9630f387"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#c6172a83-43f2-4b2f-98ec-ae3ab6c310ae');
+var element = $('#b9ecea50-1626-421c-932e-20de9630f387');
 (function(on) {
 const e=$( "<a>Setup failed</a>" );
 const ns="js_jupyter_suppress_warnings";
@@ -13138,9 +13138,9 @@ $(element).append(e);
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>Got stderr: Mar 27, 2020 3:40:28 PM org.apache.pdfbox.pdmodel.font.PDCIDFontType2 &lt;init&gt;
+<pre>Got stderr: Mar 27, 2020 8:36:51 PM org.apache.pdfbox.pdmodel.font.PDCIDFontType2 &lt;init&gt;
 INFO: OpenType Layout tables used in font BCDGEE+Calibri-Light are not implemented in PDFBox and will be ignored
-Mar 27, 2020 3:40:29 PM org.apache.pdfbox.pdmodel.font.PDCIDFontType2 &lt;init&gt;
+Mar 27, 2020 8:36:52 PM org.apache.pdfbox.pdmodel.font.PDCIDFontType2 &lt;init&gt;
 INFO: OpenType Layout tables used in font BCDIEE+Calibri are not implemented in PDFBox and will be ignored
 
 </pre>
@@ -13236,402 +13236,118 @@ findfont: Font family [&#39;normal&#39;] not found. Falling back to DejaVu Sans.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
 <div class="output_wrapper">
 <div class="output">
 
 <div class="output_area">
 
 
+
+
+<div id="f22e73e6-58bd-43c3-bacd-7d8b5d41740c"></div>
+<div class="output_subarea output_javascript ">
+<script type="text/javascript">
+var element = $('#f22e73e6-58bd-43c3-bacd-7d8b5d41740c');
+require.config({
+    paths: {
+        datatables: 'https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min',
+    }
+});
+
+$('head').append('<link rel="stylesheet" type="text/css" \
+                href = "https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" > ');
+
+$('head').append('<style> table td { text-overflow: ellipsis; overflow: hidden; } </style>');
+
+$('head').append(`<script>
+function eval_functions(map_or_text) {
+    if (typeof map_or_text === "string") {
+        if (map_or_text.startsWith("function")) {
+            try {
+                // Note: parenthesis are required around the whole expression for eval to return a value!
+                // See https://stackoverflow.com/a/7399078/911298.
+                //
+                // eval("local_fun = " + map_or_text) would fail because local_fun is not declared
+                // (using var, let or const would work, but it would only be declared in the local scope
+                // and therefore the value could not be retrieved).
+                const func = eval("(" + map_or_text + ")");
+                if (typeof func !== "function") {
+                    // Note: backquotes are super convenient!
+                    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+                    console.error("Evaluated expression " + map_or_text + " is not a function (type is " + typeof func + ")");
+                    return map_or_text;
+                }
+                // Return the function
+                return func;
+            } catch (e) {
+                // Make sure to print the error with a second argument to console.error().
+                console.error("itables was not able to parse " + map_or_text, e);
+            }
+        }
+    } else if (typeof map_or_text === "object") {
+        if (map_or_text instanceof Array) {
+            // Note: "var" is now superseded by "let" and "const".
+            // https://medium.com/javascript-scene/javascript-es6-var-let-or-const-ba58b8dcde75
+            const result = [];
+            // Note: "for of" is the best way to iterate through an iterable.
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
+            for (const item of map_or_text) {
+                result.push(eval_functions(item));
+            }
+            return result;
+
+            // Alternatively, more functional approach in one line:
+            // return map_or_text.map(eval_functions);
+        } else {
+            const result = {};
+            // Object.keys() is safer than "for in" because otherwise you might have keys
+            // that aren't defined in the object itself.
+            //
+            // See https://stackoverflow.com/a/684692/911298.
+            for (const item of Object.keys(map_or_text)) {
+                result[item] = eval_functions(map_or_text[item]);
+            }
+            return result;
+        }
+    }
+
+    return map_or_text;
+}
+</` + 'script>');
+</script>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
+<div><table id="d3343ae9-59bb-41c9-afad-b73487fea24c" class="display"><thead>
     <tr style="text-align: right;">
       <th></th>
       <th>Vaccine Platform</th>
       <th>Vaccine Specifics</th>
-      <th>Company/Developer</th>
+      <th>Company 
+ Developer</th>
       <th>Trial Stage</th>
       <th>Other Uses</th>
     </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Non- Replicating Viral Vector</td>
-      <td>Adenovirus Type 5 Vector</td>
-      <td>CanSino Biological Inc. and Beijing Institute ...</td>
-      <td>Phase 1</td>
-      <td>Ebola</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>RNA</td>
-      <td>LNP- encapsulated mRNA</td>
-      <td>Moderna/NIAID</td>
-      <td>Phase 1</td>
-      <td>multiple candidates</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>DNA</td>
-      <td>DNA plasmid vaccine Electroporation device</td>
-      <td>Inovio Pharmaceuticals</td>
-      <td>Pre-Clinical</td>
-      <td>Lassa, Nipah HIV Filovirus HPV Cancer indicati...</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>DNA</td>
-      <td>DNA</td>
-      <td>Takis/Applied DNA Sciences/Evvivax</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>DNA</td>
-      <td>DNA plasmid vaccine</td>
-      <td>Zydus Cadila</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Inactivated</td>
-      <td>Formaldehyde- inactivated + alum</td>
-      <td>Sinovac</td>
-      <td>Pre-Clinical</td>
-      <td>SARS</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Live Attenuated Virus</td>
-      <td>Deoptimized live attanuated vaccines</td>
-      <td>Codagenix/Serum Institute of India</td>
-      <td>Pre-Clinical</td>
-      <td>HAV, InfA, ZIKV, FMD, SIV, RSV, DENV</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Non- Replicating Viral Vector</td>
-      <td>MVA encoded VLP</td>
-      <td>GeoVax/BravoVax</td>
-      <td>Pre-Clinical</td>
-      <td>LASV, EBOV, MARV, HIV</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Non- Replicating Viral Vector</td>
-      <td>Ad26 (alone or with MVA boost)</td>
-      <td>Janssen Pharmaceutical Companies</td>
-      <td>Pre-Clinical</td>
-      <td>Ebola, HIV, RSV</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Non- Replicating Viral Vector</td>
-      <td>ChAdOx1</td>
-      <td>University of Oxford</td>
-      <td>Pre-Clinical</td>
-      <td>influenza, TB, Chikungunya, Zika, MenB, plague</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Non- Replicating Viral Vector</td>
-      <td>adenovirus- based NasoVAX expressing SARS2-CoV...</td>
-      <td>Altimmune</td>
-      <td>Pre-Clinical</td>
-      <td>influenza</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Non- Replicating Viral Vector</td>
-      <td>Ad5 S (GREVAXTM platform)</td>
-      <td>Greffex</td>
-      <td>Pre-Clinical</td>
-      <td>MERS</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Non- Replicating Viral Vector</td>
-      <td>Oral Vaccine platform</td>
-      <td>Vaxart</td>
-      <td>Pre-Clinical</td>
-      <td>InfA, CHIKV, LASV, NORV; EBOV, RVF, HBV, VEE</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Protein Subunit</td>
-      <td>Drosophila S2 insect cell expression system VLPs</td>
-      <td>ExpreS2ion</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>Protein Subunit</td>
-      <td>S protein</td>
-      <td>WRAIR/USAMRIID</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Protein Subunit</td>
-      <td>S-Trimer</td>
-      <td>Clover Biopharmaceuticals Inc./GSK</td>
-      <td>Pre-Clinical</td>
-      <td>HIV, REV Influenza</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Protein Subunit</td>
-      <td>Peptide</td>
-      <td>Vaxil Bio</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>Protein Subunit</td>
-      <td>S protein</td>
-      <td>AJ Vaccines</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>Protein Subunit</td>
-      <td>Ii-Key peptide</td>
-      <td>Generex/EpiVax</td>
-      <td>Pre-Clinical</td>
-      <td>Influenza, HIV, SARS- CoV</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Protein Subunit</td>
-      <td>S protein</td>
-      <td>EpiVax/Univ. of Georgia</td>
-      <td>Pre-Clinical</td>
-      <td>H7N9</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>Protein Subunit</td>
-      <td>S protein (baculovirus production)</td>
-      <td>Sanofi Pasteur</td>
-      <td>Pre-Clinical</td>
-      <td>Influenza, SARS-CoV</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Protein Subunit</td>
-      <td>Full length S trimers/ nanoparticle + Matrix M</td>
-      <td>Novavax</td>
-      <td>Pre-Clinical</td>
-      <td>RSV; CCHF, HPV, VZV, EBOV</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Protein Subunit</td>
-      <td>gp-96 backbone</td>
-      <td>Heat Biologics/Univ. Of Miami</td>
-      <td>Pre-Clinical</td>
-      <td>NSCLC, HIV, malaria, Zika</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>Protein Subunit</td>
-      <td>Molecular clamp stabilized Spike protein</td>
-      <td>University of Queensland/GSK</td>
-      <td>Pre-Clinical</td>
-      <td>Nipah, influenza, Ebola, Lassa</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>Protein Subunit</td>
-      <td>S1 or RBD protein</td>
-      <td>Baylor College of Medicine</td>
-      <td>Pre-Clinical</td>
-      <td>SARS</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>Protein Subunit</td>
-      <td>Subunit protein, plant produced</td>
-      <td>iBio/CC-Pharming</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>Protein Subunit</td>
-      <td>Subunit</td>
-      <td>VIDO-InterVac, University of Saskatchewan</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>Protein Subunit</td>
-      <td>Adjuvanted microsphere peptide</td>
-      <td>University of Saskatchewan</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>Replicating Viral Vector</td>
-      <td>Measles Vector</td>
-      <td>Zydus Cadila</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>Replicating Viral Vector</td>
-      <td>Measles Vector</td>
-      <td>Institute Pasteur/Themis/Univ. of Pittsburg Ce...</td>
-      <td>Pre-Clinical</td>
-      <td>West nile, chik, Ebola, Lassa, Zika</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>Replicating Viral Vector</td>
-      <td>Horsepox vector expressing S protein</td>
-      <td>Tonix Pharma/Southern Research</td>
-      <td>Pre-Clinical</td>
-      <td>Smallpox, monkeypox</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>RNA</td>
-      <td>LNP- encapsulated mRNA  cocktail encoding VLP</td>
-      <td>Fudan University/ Shanghai JiaoTong University...</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>RNA</td>
-      <td>LNP- encapsulated mRNA encoding RBD</td>
-      <td>Fudan University/ Shanghai JiaoTong University...</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>RNA</td>
-      <td>mRNA</td>
-      <td>China CDC/Tongji University/Stermina</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>RNA</td>
-      <td>mRNA</td>
-      <td>Arcturus/Duke-NUS</td>
-      <td>Pre-Clinical</td>
-      <td>multiple candidates</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>RNA</td>
-      <td>mRNA</td>
-      <td>BioNTech/Fosun Pharma/Pfizer</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td>RNA</td>
-      <td>saRNA</td>
-      <td>Imperial College London</td>
-      <td>Pre-Clinical</td>
-      <td>EBOV; LASV, MARV, Inf (H7N9), RABV</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td>RNA</td>
-      <td>mRNA</td>
-      <td>Curevac</td>
-      <td>Pre-Clinical</td>
-      <td>RABV, LASV, YFV; MERS, InfA, ZIKV, DengV, NIPV</td>
-    </tr>
-    <tr>
-      <th>42</th>
-      <td>VLP</td>
-      <td>Plant-derived VLP</td>
-      <td>Medicago Inc.</td>
-      <td>Pre-Clinical</td>
-      <td>Flu, Rotavirus, Norovirus, West Nile virus, Ca...</td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td>Unknown</td>
-      <td>Unknown</td>
-      <td>University of Hong Kong</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>44</th>
-      <td>Unknown</td>
-      <td>Unknown</td>
-      <td>ImmunoPrecise</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>45</th>
-      <td>Unknown</td>
-      <td>Unknown</td>
-      <td>MIGAL Galilee Research Institute</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td>Unknown</td>
-      <td>Unknown</td>
-      <td>Doherty Institute</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>47</th>
-      <td>Unknown</td>
-      <td>Unknown</td>
-      <td>Tulane University</td>
-      <td>Pre-Clinical</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
+  </thead></table>
+<script type="text/javascript">
+require(["datatables"], function (datatables) {
+    $(document).ready(function () {        
+        var dt_args = {"columnDefs": [{"width": "70px", "targets": "_all"}], "data": [[0, "Non- Replicating Viral Vector", "Adenovirus Type 5 Vector", "CanSino Biological Inc. and Beijing Institute of Biotechnology", "Phase 1", "Ebola"], [1, "RNA", "LNP- encapsulated mRNA", "Moderna/NIAID", "Phase 1", "multiple candidates"], [6, "DNA", "DNA plasmid vaccine Electroporation device", "Inovio Pharmaceuticals", "Pre-Clinical", "Lassa, Nipah HIV Filovirus HPV Cancer indications Zika Hepatitis B"], [7, "DNA", "DNA", "Takis/Applied DNA Sciences/Evvivax", "Pre-Clinical", "nan"], [8, "DNA", "DNA plasmid vaccine", "Zydus Cadila", "Pre-Clinical", "nan"], [9, "Inactivated", "Formaldehyde- inactivated + alum", "Sinovac", "Pre-Clinical", "SARS"], [10, "Live Attenuated Virus", "Deoptimized live attanuated vaccines", "Codagenix/Serum Institute of India", "Pre-Clinical", "HAV, InfA, ZIKV, FMD, SIV, RSV, DENV"], [11, "Non- Replicating Viral Vector", "MVA encoded VLP", "GeoVax/BravoVax", "Pre-Clinical", "LASV, EBOV, MARV, HIV"], [12, "Non- Replicating Viral Vector", "Ad26 (alone or with MVA boost)", "Janssen Pharmaceutical Companies", "Pre-Clinical", "Ebola, HIV, RSV"], [13, "Non- Replicating Viral Vector", "ChAdOx1", "University of Oxford", "Pre-Clinical", "influenza, TB, Chikungunya, Zika, MenB, plague"], [14, "Non- Replicating Viral Vector", "adenovirus- based NasoVAX expressing SARS2-CoV spike protein", "Altimmune", "Pre-Clinical", "influenza"], [15, "Non- Replicating Viral Vector", "Ad5 S (GREVAXTM platform)", "Greffex", "Pre-Clinical", "MERS"], [16, "Non- Replicating Viral Vector", "Oral Vaccine platform", "Vaxart", "Pre-Clinical", "InfA, CHIKV, LASV, NORV; EBOV, RVF, HBV, VEE"], [17, "Protein Subunit", "Drosophila S2 insect cell expression system VLPs", "ExpreS2ion", "Pre-Clinical", "nan"], [18, "Protein Subunit", "S protein", "WRAIR/USAMRIID", "Pre-Clinical", "nan"], [19, "Protein Subunit", "S-Trimer", "Clover Biopharmaceuticals Inc./GSK", "Pre-Clinical", "HIV, REV Influenza"], [20, "Protein Subunit", "Peptide", "Vaxil Bio", "Pre-Clinical", "nan"], [21, "Protein Subunit", "S protein", "AJ Vaccines", "Pre-Clinical", "nan"], [22, "Protein Subunit", "Ii-Key peptide", "Generex/EpiVax", "Pre-Clinical", "Influenza, HIV, SARS- CoV"], [23, "Protein Subunit", "S protein", "EpiVax/Univ. of Georgia", "Pre-Clinical", "H7N9"], [24, "Protein Subunit", "S protein (baculovirus production)", "Sanofi Pasteur", "Pre-Clinical", "Influenza, SARS-CoV"], [25, "Protein Subunit", "Full length S trimers/ nanoparticle + Matrix M", "Novavax", "Pre-Clinical", "RSV; CCHF, HPV, VZV, EBOV"], [26, "Protein Subunit", "gp-96 backbone", "Heat Biologics/Univ. Of Miami", "Pre-Clinical", "NSCLC, HIV, malaria, Zika"], [27, "Protein Subunit", "Molecular clamp stabilized Spike protein", "University of Queensland/GSK", "Pre-Clinical", "Nipah, influenza, Ebola, Lassa"], [28, "Protein Subunit", "S1 or RBD protein", "Baylor College of Medicine", "Pre-Clinical", "SARS"], [29, "Protein Subunit", "Subunit protein, plant produced", "iBio/CC-Pharming", "Pre-Clinical", "nan"], [30, "Protein Subunit", "Subunit", "VIDO-InterVac, University of Saskatchewan", "Pre-Clinical", "nan"], [31, "Protein Subunit", "Adjuvanted microsphere peptide", "University of Saskatchewan", "Pre-Clinical", "nan"], [32, "Replicating Viral Vector", "Measles Vector", "Zydus Cadila", "Pre-Clinical", "nan"], [33, "Replicating Viral Vector", "Measles Vector", "Institute Pasteur/Themis/Univ. of Pittsburg Center for Vaccine Research", "Pre-Clinical", "West nile, chik, Ebola, Lassa, Zika"], [34, "Replicating Viral Vector", "Horsepox vector expressing S protein", "Tonix Pharma/Southern Research", "Pre-Clinical", "Smallpox, monkeypox"], [35, "RNA", "LNP- encapsulated mRNA  cocktail encoding VLP", "Fudan University/ Shanghai JiaoTong University/RNACure Biopharma", "Pre-Clinical", "nan"], [36, "RNA", "LNP- encapsulated mRNA encoding RBD", "Fudan University/ Shanghai JiaoTong University/RNACure Biopharma", "Pre-Clinical", "nan"], [37, "RNA", "mRNA", "China CDC/Tongji University/Stermina", "Pre-Clinical", "nan"], [38, "RNA", "mRNA", "Arcturus/Duke-NUS", "Pre-Clinical", "multiple candidates"], [39, "RNA", "mRNA", "BioNTech/Fosun Pharma/Pfizer", "Pre-Clinical", "nan"], [40, "RNA", "saRNA", "Imperial College London", "Pre-Clinical", "EBOV; LASV, MARV, Inf (H7N9), RABV"], [41, "RNA", "mRNA", "Curevac", "Pre-Clinical", "RABV, LASV, YFV; MERS, InfA, ZIKV, DengV, NIPV"], [42, "VLP", "Plant-derived VLP", "Medicago Inc.", "Pre-Clinical", "Flu, Rotavirus, Norovirus, West Nile virus, Cancer"], [43, "Unknown", "Unknown", "University of Hong Kong", "Pre-Clinical", "nan"], [44, "Unknown", "Unknown", "ImmunoPrecise", "Pre-Clinical", "nan"], [45, "Unknown", "Unknown", "MIGAL Galilee Research Institute", "Pre-Clinical", "nan"], [46, "Unknown", "Unknown", "Doherty Institute", "Pre-Clinical", "nan"], [47, "Unknown", "Unknown", "Tulane University", "Pre-Clinical", "nan"]]};
+        dt_args = eval_functions(dt_args);
+        table = $('#d3343ae9-59bb-41c9-afad-b73487fea24c').DataTable(dt_args);
+    });
+})
+</script>
 </div>
+
 </div>
 
 </div>
