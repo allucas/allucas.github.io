@@ -74,3 +74,7 @@ require(["datatables"], function (datatables) {
 
 
 
+
+### Citation
+
+Lucas, A. COVID-19 Vaccine Development Tracker. 27 Mar. 2020, covid-vaccine-tracker.com. DOI:10.5281/zenodo.3731761
